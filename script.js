@@ -4,11 +4,12 @@ for(let i = 0; i < 100; i++){
 	shape.className = 'shape';
 	shape.style.width = '50px';
 	shape.style.height = '50px';
-	shape.style.marginLeft = '25px';
-	shape.style.marginTop = '25px';
+	
 	shape.style.backgroundColor = 'black';
+	shape.number = i;
 	main.appendChild(shape);
 	calculateRow(shape);
+	setMargin(shape);
 }
 
 function calculateRow (shape){
@@ -22,5 +23,10 @@ function calculateRow (shape){
 		console.log(row);
 	}
 	
+}
+
+function setMargin (shape){
+	shape.style.marginLeft = '25px';
+	shape.style.marginTop = '25px';
 }
 
