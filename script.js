@@ -1,32 +1,79 @@
+'use strict'
+
 let main = document.querySelector('.main');
-for(let i = 0; i < 100; i++){
-	let shape = document.createElement('div');
-	shape.className = 'shape';
-	shape.style.width = '50px';
-	shape.style.height = '50px';
-	
-	shape.style.backgroundColor = 'black';
-	shape.number = i;
-	main.appendChild(shape);
-	calculateRow(shape);
-	setMargin(shape);
-}
+main.style.width = '100%';
+main.style.height = '200%';
 
-function calculateRow (shape){
-	if('romb'){
-		let width = parseInt(shape.style.width);
-		let height = parseInt(shape.style.height);
-		let diagonal = (Math.sqrt(Math.pow(width, 2) + Math.pow(height,2))).toFixed(2);
-		let element = diagonal + parseInt(shape.style.marginLeft);
-		let mainWidth = parseInt(main.offsetWidth);
-		let row = (mainWidth/diagonal).toFixed();
-		console.log(row);
+let mainForm = document.querySelector('.mainForm');
+mainForm.onsubmit = function (event){
+	event.preventDefault();
+	generatePicture();
+}
+let itemWidth;
+let itemHeight;
+
+function generatePicture(){
+	itemWidth = document.querySelector('.itemWidth').value || 50;
+	itemHeight = document.querySelector('.itemHeight').value || 50;
+	console.log(itemWidth);
+	let itemColor = 'black';
+	let itemMarginLeft = 10;
+	let itemMarginTop = 10;
+	let rowEnd = 1;
+	let row = calculateRow();
+	let rowBlock;
+	createRow();
+	for(let i = 0; i < 200; i++){
+		let shape = document.createElement('div');
+		shape.style.width = itemWidth + 'px';
+		shape.style.height = itemHeight + 'px';
+		shape.style.marginLeft = itemMarginLeft + 'px';
+		shape.style.marginTop = itemMarginTop + 'px';
+		shape.className = 'shape';		
+		shape.style.backgroundColor = itemColor;
+		shape.number = i;
+		if('round'){
+			round(shape);
+		}
+		rowBlock.appendChild(shape);
+		if(row == rowEnd){
+			itemWidth -= 5;
+			itemHeight -= 5;
+			itemMarginLeft += 2;
+			itemMarginTop +=2;
+			row = calculateRow();
+			createRow();
+			rowEnd = 0;
+		}
+	rowEnd++;
 	}
-	
+
+
+
+	function createRow(){
+		rowBlock = document.createElement('div');
+		rowBlock.className = 'rowBlock';
+		main.appendChild(rowBlock);
+	}
+
+	function round (shape){
+		shape.style.borderRadius = '50%';
+	}
+
+
+	function calculateRow (){
+		let mainWidth = parseInt(main.offsetWidth);
+		if(false){   /* romb */
+			let diagonal = (Math.sqrt(Math.pow(itemWidth, 2) + Math.pow(itemHeight,2))).toFixed(2);
+			let element = diagonal + itemMarginLeft;	
+			let row = (mainWidth/diagonal).toFixed();
+		}
+		if('round'){
+			let rowItem = Math.floor(mainWidth/(itemWidth + itemMarginLeft));
+			return rowItem;
+		}
+		
+	}
 }
 
-function setMargin (shape){
-	shape.style.marginLeft = '25px';
-	shape.style.marginTop = '25px';
-}
 
