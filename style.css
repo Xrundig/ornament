@@ -7,7 +7,6 @@ body{
 	font-size: 18px;
 }
 .main{
-	background-color: yellow;
 	overflow: hidden;
 }
 .rowBlock{
@@ -17,10 +16,16 @@ body{
 .shape{
 	display: inline-block;
 }
-form{
+.mainForm{
 	padding: 40px;
 	padding-left: 20px;
 	padding-right: 40px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+.formblock{
+	width: 45%;
 }
 input[type=text], select{
 	width: 100%;
@@ -29,6 +34,7 @@ input[type=text], select{
 	margin-top: 10px;
 	margin-bottom: 10px;
 	height: 30px;
+	box-sizing: border-box;
 }
 input[type=text]:focus, select:focus{
 	border: 2px solid rgb(50,50,50);

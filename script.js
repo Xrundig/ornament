@@ -11,16 +11,19 @@ mainForm.onsubmit = function (event){
 }
 let itemWidth;
 let itemHeight;
+let itemColor;
+let itemMarginLeft;
+let itemMarginTop;
 
 function generatePicture(){
 	itemWidth = document.querySelector('.itemWidth').value || 50;
 	itemHeight = document.querySelector('.itemHeight').value || 50;
-	console.log(itemWidth);
-	let itemColor = 'black';
-	let itemMarginLeft = 10;
-	let itemMarginTop = 10;
+	itemColor = document.querySelector('.itemColor').value || 'black';
+	itemMarginLeft = document.querySelector('.itemMarginLeft').value || 10;
+	itemMarginTop = document.querySelector('.itemMarginTop').value || 10;	
 	let rowEnd = 1;
 	let row = calculateRow();
+	console.log(row);
 	let rowBlock;
 	createRow();
 	for(let i = 0; i < 200; i++){
@@ -44,6 +47,7 @@ function generatePicture(){
 			row = calculateRow();
 			createRow();
 			rowEnd = 0;
+			console.log(itemWidth);
 		}
 	rowEnd++;
 	}
@@ -69,7 +73,9 @@ function generatePicture(){
 			let row = (mainWidth/diagonal).toFixed();
 		}
 		if('round'){
-			let rowItem = Math.floor(mainWidth/(itemWidth + itemMarginLeft));
+
+			let rowItem = Math.floor(+mainWidth/(+itemWidth + itemMarginLeft));
+			console.log(rowItem);
 			return rowItem;
 		}
 		
