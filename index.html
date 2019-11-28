@@ -9,7 +9,7 @@
 	<form class="mainForm" onsubmit="generatePicture()">
 		<div class="formblock">
 			Width of the picture<input type="text" class="mainWidth">
-			Height of the picture<input type="text">
+			Height of the picture<input type="text" class="mainHeight">
 			Select the shape
 			<select name="figure" id="figure">
 				<option value="square">Square</option>
@@ -22,16 +22,13 @@
 		<div class="formblock">
 			Height of the figure
 			<input type="text" class="itemHeight">
-			Horizontal space between figures<input type="text">
-			Vertical space between figures<input type="text">
+			Horizontal space between figures<input type="text" class="itemMarginLeft"> 
+			Vertical space between figures<input type="text" class="itemMarginTop">
 			Color of the figure<input type="text" class="itemColor">
 		</div>
 		
 		<button class="formButton">Generate</button>
 	</form>
-	<div class="main">
-		
-	</div>
 	<script src="script.js"></script>
 </body>
 </html>
